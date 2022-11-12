@@ -73,7 +73,7 @@ En el punto anterior hemos podido ver que el proyecto integra de base numerosas 
 o frameworks estandar con una documentación extremadamente completa, por lo que escapa al alcance de este documento.  
 En cambio, sí vamos a ver lo que hace diferente al proyecto, y que, en mi humilde opinión, beneficia y acelera el desarrollo de una nueva app.
 
-###1. Inyección de dependencias con Koin
+### 1. Inyección de dependencias con Koin
 
 Este proyecto, como hemos comentado utiliza Koin como proveedor de dependencias, que en la versión utilizada (no implementa [Koin Annotations](https://insert-koin.io/docs/reference/koin-annotations/annotations))
 sino la forma clásica de Koin), en teoría app debería tener acceso a todas las capas en las que se van a realizar mapeos ya que hay que pasarle todas 
@@ -159,7 +159,7 @@ class CustomApplication: MultiDexApplication() {
 Como podemos ver, en nuestro CustomApplication tan solo debemos inyectar los módulos de application 
 (este ya lleva el resto de los módulos de las distintas capas).
 
-###2. Mapeo de Entidades Cache - Remote - Domain
+### 2. Mapeo de Entidades Cache - Remote - Domain
 
 Otra de las problemáticas de las implementaciones Clean Architecture está en decidir qué modelado de entidades se va a seguir.  
 En un modelo clásico de implementación en el que nuestra aplicación dispone de orígenes de datos remotos y almacenamiento local,
@@ -188,7 +188,7 @@ más allá de la dependencia con las clases remote o domain (en el caso de trata
 
 A partir de la introducción dada, veamos los distintos tipos de clases abstractas e interfaces implicadas en el proceso:
 
-###IDomain
+#### IDomain
 
 IDomain está implementada en el módulo **model**, en el package *io.github.afalalabarce.mvvmproject.model.interfaces*,
 siendo su utilidad marcar una data class como que es una entidad de dominio. Veamos un ejemplo de definición de entidad 
@@ -206,13 +206,13 @@ data class ExampleDomainEntity(
 ): IDomain
 ```  
 
-###IMapperEntity
+#### IMapperEntity
 
 Esta interfaz está definida en el proyecto **datasource** con la intención de que **las clases que implementen esta interfaz
 no sean accesibles por capas de nivel superior** (sólo serán accesibles por su capa inmediatamente superior, esto es, **data**).
 Al igual que IDomain, **es una interfaz hueca**.
 
-###ICacheEntity  
+#### ICacheEntity  
 
 ICacheEntity es una clase abstracta que nos va a permitir gestionar los mapeos de entidades de Cache a los otros tipos de entidad,
 es decir, una data class que implemente esta clase abstracta, va a poder mapear su instancia a domain o remote, y desde domain a caché
@@ -301,7 +301,7 @@ override fun addOrUpdateExampleEntity(vararg exampleEntity: ExampleDomainEntity)
 ```  
 Este código forma parte del fichero **ExampleCacheDataStoreImpl** (capa **data**, *features, example, implementation*)  
 
-###IRemoteEntity  
+#### IRemoteEntity  
 
 Esta clase abstracta es la contraparte de ICacheEntity, su funcionalidad es exactamente la misma, pero pensada y diseñada para entidades de datos remotos.  
 Al igual que ICacheEntity, implementa IMapperEntity, siendo su código fuente el siguiente:
@@ -391,14 +391,14 @@ override fun getAllExampleEntities(): Flow<List<ExampleDomainEntity>> = flow {
 ```  
 El trozo de código anterior está disponible en la capa **data**, *features, example, implementation, ExampleRemoteDataStoreImpl*.   
 
-###Valoración final del sistema de mapeo.  
+#### Valoración final del sistema de mapeo.  
 
 Como podemos ver, este sistema de mapeo es bastante simple, a la par que potente (creo), nos permite gestionar el intercambio de datos 
 entre distintos orígenes de datos de forma muy sencilla, además descarga de trabajo al proveedor de dependencias, por lo que el rendimiento
 debe ser bastante mejor que implementando mapeadores "clásicos".  
 Por tanto, quizá es una idea que puede ser tenida en cuenta para tus desarrollos (o no ;D).
 
-###3. Gestión de preferencias con Jetpack DataStore  
+### 3. Gestión de preferencias con Jetpack DataStore  
 
 Por último, pero no menos importante, tenemos el caballo de batalla de toda app, esto es, el almacenamiento cacheado
 (no en bases de datos al uso como Room) de ciertos parámetros de la app. Como todos sabemos, desde que Android es Android 
@@ -462,7 +462,7 @@ mediante corrutinas, por lo que tenemos garantizada la asincronía y la reactivi
 
 Para más información sobre DataStore, te recomiento que mires su [referencia del desarrollador](https://developer.android.com/topic/libraries/architecture/datastore).
 
-#Esto es todo, GRACIAS por leerte todo el mamotreto ;)
+# Esto es todo, GRACIAS por leerte todo el mamotreto ;)
 
 Y si piensas que he hecho un buen trabajo y me merezco un café puedes hacer un [PaypalMe](https://www.paypal.com/paypalme/afalabarce)
 
