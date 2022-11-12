@@ -188,7 +188,7 @@ más allá de la dependencia con las clases remote o domain (en el caso de trata
 
 A partir de la introducción dada, veamos los distintos tipos de clases abstractas e interfaces implicadas en el proceso:
 
-####IDomain
+###IDomain
 
 IDomain está implementada en el módulo **model**, en el package *io.github.afalalabarce.mvvmproject.model.interfaces*,
 siendo su utilidad marcar una data class como que es una entidad de dominio. Veamos un ejemplo de definición de entidad 
@@ -206,13 +206,13 @@ data class ExampleDomainEntity(
 ): IDomain
 ```  
 
-####IMapperEntity
+###IMapperEntity
 
 Esta interfaz está definida en el proyecto **datasource** con la intención de que **las clases que implementen esta interfaz
 no sean accesibles por capas de nivel superior** (sólo serán accesibles por su capa inmediatamente superior, esto es, **data**).
 Al igual que IDomain, **es una interfaz hueca**.
 
-####ICacheEntity  
+###ICacheEntity  
 
 ICacheEntity es una clase abstracta que nos va a permitir gestionar los mapeos de entidades de Cache a los otros tipos de entidad,
 es decir, una data class que implemente esta clase abstracta, va a poder mapear su instancia a domain o remote, y desde domain a caché
@@ -301,7 +301,7 @@ override fun addOrUpdateExampleEntity(vararg exampleEntity: ExampleDomainEntity)
 ```  
 Este código forma parte del fichero **ExampleCacheDataStoreImpl** (capa **data**, *features, example, implementation*)  
 
-####IRemoteEntity  
+###IRemoteEntity  
 
 Esta clase abstracta es la contraparte de ICacheEntity, su funcionalidad es exactamente la misma, pero pensada y diseñada para entidades de datos remotos.  
 Al igual que ICacheEntity, implementa IMapperEntity, siendo su código fuente el siguiente:
@@ -391,7 +391,7 @@ override fun getAllExampleEntities(): Flow<List<ExampleDomainEntity>> = flow {
 ```  
 El trozo de código anterior está disponible en la capa **data**, *features, example, implementation, ExampleRemoteDataStoreImpl*.   
 
-####Valoración final del sistema de mapeo.  
+###Valoración final del sistema de mapeo.  
 
 Como podemos ver, este sistema de mapeo es bastante simple, a la par que potente (creo), nos permite gestionar el intercambio de datos 
 entre distintos orígenes de datos de forma muy sencilla, además descarga de trabajo al proveedor de dependencias, por lo que el rendimiento
