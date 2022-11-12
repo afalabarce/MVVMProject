@@ -460,7 +460,7 @@ perezosa le asignamos un preferencesDataStore con el nombre que le queramos dar 
 Por lo demás el código no tiene mucho misterior, las obtenciones de datos se realizan mediante Flow, y las asignaciones
 mediante corrutinas, por lo que tenemos garantizada la asincronía y la reactividad.  
 
-Para más información sobre DataStore, te recomiento que mires su [referencia del desarrollador](https://developer.android.com/topic/libraries/architecture/datastore).
+Para más información sobre DataStore, te recomiendo que mires su [referencia del desarrollador](https://developer.android.com/topic/libraries/architecture/datastore).
 
 # Esto es todo, GRACIAS por leerte todo el mamotreto ;)
 
