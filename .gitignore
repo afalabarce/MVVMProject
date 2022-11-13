@@ -16,8 +16,14 @@ dist/
 # Log files
 *.log
 
+*.lock
+
+*.bin
+
 # Package files
 *.jar
+
+*.probe
 
 # Maven
 target/

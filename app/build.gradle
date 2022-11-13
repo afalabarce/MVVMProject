@@ -24,10 +24,55 @@ android {
         }
     }
 
+    /* TODO: Pending set keystore signature data
+    signingConfigs {
+        release {
+            storeFile file("keystore/MVVMProject.jks")
+            storePassword "mvvmprojectpassword"
+            keyAlias "MVVMProjectSignature"
+            keyPassword "mvvmprojectpassword"
+        }
+    }
+    */
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // Force copy of distributable apk to custom folder dist in root project
+            def archiveBuildTypes = [ "release", "debug" ]
+            def distFolder = "../dist/"
+            def apkName = android.defaultConfig.applicationId
+
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    if (variant.buildType.name in archiveBuildTypes) {
+                        // Update output filename
+                        if (variant.versionName != null) {
+                            String name = "$apkName-${variant.versionName}-${output.baseName}.apk"
+                            outputFileName = new File(name)
+                        }
+                        def taskSuffix = variant.name.capitalize()
+                        def assembleTaskName = "assemble${taskSuffix}"
+                        if (tasks.findByName(assembleTaskName)) {
+                            def copyAPKFolderTask = tasks.create(name: "archive${taskSuffix}", type: org.gradle.api.tasks.Copy) {
+                                description "Archive/copy APK folder to a shared folder."
+                                def sourceFolder = "$buildDir/outputs/apk/${output.baseName.replace("-", "/")}"
+                                def destinationFolder = "$distFolder${output.baseName.replace("-", "/")}"
+                                print "Copying APK folder from: $sourceFolder into $destinationFolder\n"
+                                from(sourceFolder)
+                                into destinationFolder
+                                eachFile { file ->
+                                    file.path = file.name // so we have a "flat" copy
+                                }
+                                includeEmptyDirs = false
+                            }
+                            tasks[assembleTaskName].finalizedBy = [copyAPKFolderTask]
+                        }
+                    }
+                }
+            }
         }
     }
     compileOptions {
@@ -43,6 +88,11 @@ android {
     buildFeatures {
         compose true
     }
+
+    viewBinding {
+        enabled = true
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion "$compose_compiler_version"
     }
@@ -51,7 +101,35 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+    // Needed for testing usage
+    testOptions {
+        animationsDisabled=true
+        reportDir "$rootDir/instrumentedTestsResults/reports/$project.name"
+        resultsDir "$rootDir/instrumentedTestsResults/results/$project.name"
+        unitTests{
+            includeAndroidResources = true
+            returnDefaultValues = true
+            all {
+                useJUnitPlatform()
+            }
+        }
+    }
 }
+
+// This tasks are for future automation console scripts
+tasks.register('applicationId'){
+    doLast{
+        println "${android.defaultConfig.applicationId}"
+    }
+}
+
+tasks.register('appVersionName'){
+    doLast{
+        println "${android.defaultConfig.versionName}"
+    }
+}
+
 
 dependencies {
     implementation "androidx.core:core-ktx:$core_ktx_version"
@@ -60,7 +138,6 @@ dependencies {
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugar_version"
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "androidx.multidex:multidex:$multidex_version"
-
 
     // Koin for Android
     implementation "io.insert-koin:koin-android:$koin_version"
