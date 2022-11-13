@@ -87,7 +87,7 @@ Lo descrito en el párrafo anterior queda claramente definido en el siguiente es
 ![img.png](img.png)  
 
 Para implementar los inyectores de dependencia, en cada capa deberá existir un package llamado "**di**" 
-que será el que contenga la clase que implementará las depencias de la capa anterior, unida a la capa actual, por ejemplo,
+que será el que contenga la clase que implementará las dependencias de la capa anterior, unida a la capa actual, por ejemplo,
 pensemos en la capa **data**, queremos inyectar sus propias dependencias, además de las de datasource (**que deberán ir primero** para
 evitar problemas de inyección, ya que **Koin requiere de orden en función de las dependencias entre clases**).
 
