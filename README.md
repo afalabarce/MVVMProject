@@ -49,7 +49,7 @@ de preferencias en apps android, en detrimento de las obsoletas y síncronas [Sh
 viene preparado incluso para la gestión sencilla de migraciones.
 - Acceso a [APIs REST](https://es.wikipedia.org/wiki/Transferencia_de_Estado_Representacional) con [Retrofit](https://square.github.io/retrofit/).
 - Provisión de dependencias con [Koin](https://insert-koin.io/). Para esta versión del proyecto, se ha utilizado como proveedor
-de dependencias (que no inyector) el framework de Koin. En un futuro fork, realizaré la misma implementación pero con 
+de dependencias (que no inyector) el framework de Koin. En el repo [MVVM Project Hilt](https://github.com/afalabarce/MVVMProject-Hilt) he realizado la misma implementación pero con 
 [Dagger-Hilt](https://developer.android.com/training/dependency-injection/hilt-android).  
   Este proyecto implementa de una forma bastante particular la provisión de dependencias de Koin, ya que cada capa dispone de su propia colección 
   de modules de Koin, propagándose hacia capas superiores mediante la llamada a un método muy partícular (esto lo veremos en profundidad en la sección siguiente). 
