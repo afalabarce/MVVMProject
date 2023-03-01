@@ -24,7 +24,7 @@ data class RemoteExampleEntity(
     }
 
     companion object{
-        fun fromDomain(domainEntity: ExampleDomainEntity): RemoteExampleEntity = ICacheEntity.fromDomain(domainEntity){ d ->
+        fun fromDomain(domainEntity: ExampleDomainEntity): RemoteExampleEntity = ICacheEntity.fromDomain(domainEntity){
             throw IllegalMappingException("RemoteExampleEntity can't be mapped from Domain Entity")
         }
     }

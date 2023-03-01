@@ -37,6 +37,8 @@ Este proyecto, incluye de base una serie de características y funcionalidades q
 de los cambios de nombre de los *package name* del proyecto. Pasemos a enumerar las distintas funcionalidades/características 
 disponibles:  
 
+- Ficheros build.gradle adaptados a [Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html), todos, salvo el build.gradle que despliega JaCoCo.
+- Gestión de dependencias con [Gradle Catalog](https://docs.gradle.org/current/userguide/platforms.html)
 - Test Unitarios con [JUnit5](https://junit.org/junit5/). Se implementa el desarrollo de [Marcel Schnelle](https://github.com/mannodermaus/android-junit5), 
 así como las funciones de extensión e infix de [Kluent](https://markusamshove.github.io/Kluent/).
 - [Corutinas](https://developer.android.com/kotlin/coroutines). Todo el proyecto está implementando pensando en la 
