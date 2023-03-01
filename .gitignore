@@ -143,3 +143,4 @@ Thumbs.db
 /buildSrc/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i
 /buildSrc/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len
 /buildSrc/build/reports/plugin-development/validation-report.txt
+/.gradle/7.5/dependencies-accessors/2016477afff697b6c307dacd36c1f7ec069ec400/sources/org/gradle/accessors/dm/LibrariesForLibs.java
