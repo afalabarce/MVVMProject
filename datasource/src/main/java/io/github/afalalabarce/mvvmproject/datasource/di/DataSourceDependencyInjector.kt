@@ -2,12 +2,12 @@ package io.github.afalalabarce.mvvmproject.datasource.di
 
 import android.content.Context
 import androidx.room.Room
+import io.github.afalalabarce.mvvmproject.datasource.BuildConfig
 import io.github.afalalabarce.mvvmproject.datasource.cache.db.AppDatabase
 import io.github.afalalabarce.mvvmproject.datasource.datastore.PreferencesDataStore
 import io.github.afalalabarce.mvvmproject.datasource.remote.service.AppRemoteService
 import io.github.afalalabarce.mvvmproject.model.interfaces.IKoinModuleLoader
 import io.github.afalalabarce.mvvmproject.model.utilities.iif
-import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.Module
 import org.koin.dsl.module
