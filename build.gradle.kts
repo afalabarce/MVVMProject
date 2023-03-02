@@ -1,20 +1,14 @@
-buildscript {
-
-    dependencies {
-        classpath("com.google.dagger:hilt-android-gradle-plugin:${BuildVersion.dependencyInjection.hiltVersion}")
-        classpath("com.google.gms:google-services:${BuildVersion.devTools.googleServicesVersion}")
-    }
-}
-
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id ("com.android.application") version BuildVersion.devTools.gradleVersion apply false
-    id ("com.android.library") version BuildVersion.devTools.gradleVersion apply false
-    id ("org.jetbrains.kotlin.android") version BuildVersion.devTools.kotlinVersion apply false
-    id ("com.google.devtools.ksp") version BuildVersion.devTools.kspVersion apply false
-    id ("de.mannodermaus.android-junit5") version BuildVersion.testing.mannodermausVersion apply false
-    id("org.jetbrains.kotlin.jvm") version BuildVersion.devTools.kotlinVersion apply false
-    id("com.github.ben-manes.versions") version BuildVersion.gradleCatalog.versionId
-    id("nl.littlerobots.version-catalog-update") version BuildVersion.gradleCatalog.littleRobotsVersion
+    `version-catalog`
+    alias(libs.plugins.com.android.application) apply false
+    alias(libs.plugins.com.android.library) apply false
+    alias(libs.plugins.org.jetbrains.kotlin.android) apply false
+    alias(libs.plugins.com.google.devtools.ksp) apply false
+    alias(libs.plugins.de.mannodermaus.android.junit5) apply false
+    alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
+    alias(libs.plugins.com.github.ben.manes.versions)
+    alias(libs.plugins.nl.littlerobots.version.catalog.update)
 }
 
 apply(from = "gradle-scripts/jacoco.gradle")

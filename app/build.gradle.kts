@@ -1,11 +1,10 @@
-import dagger.hilt.android.plugin.util.capitalize
-
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.com.android.application)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
     kotlin("kapt")
-    id("com.google.devtools.ksp")
-    id("de.mannodermaus.android-junit5")
+    alias(libs.plugins.com.google.devtools.ksp)
+    alias(libs.plugins.de.mannodermaus.android.junit5)
 }
 
 android {
@@ -105,7 +104,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = BuildVersion.compose.compilerVersion
+        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
     }
 
     packagingOptions {
