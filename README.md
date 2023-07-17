@@ -466,7 +466,7 @@ Para más información sobre DataStore, te recomiendo que mires su [referencia d
 
 # Esto es todo, GRACIAS por leerte todo el mamotreto ;)
 
-Y si piensas que he hecho un buen trabajo y me merezco un café puedes hacer un [PaypalMe](https://www.paypal.com/paypalme/afalabarce)
+Y si piensas que he hecho un buen trabajo y me merezco un café puedes hacer un [PaypalMe](https://www.paypal.com/paypalme/afalabarce) o [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R5R4NB8VV)
 
 
 
